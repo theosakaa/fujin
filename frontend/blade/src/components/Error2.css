@@ -1,0 +1,24 @@
+.pop-container2 {
+    position: absolute;  /* Position absolutely within the parent */
+    top: 455px;           /* Default vertical position */
+    left: 50%;            /* Center horizontally */
+    transform: translateX(-50%); /* Center horizontally */
+    z-index: 1000;        /* Make sure the error is on top */
+  }
+  
+  /* Media query for screens with a width of 759px or lower */
+  @media (max-width: 759px) {
+    .pop-container2 {
+      top: 395px; /* Adjust the vertical position 100px smaller */
+    }
+  }
+  
+  .fatty {
+    color: rgb(213, 35, 4);          /* Red color for error message */
+    font-size: 12px;     /* Small font size */
+    margin: 0;           /* Remove any default margins */
+    padding: 0;          /* Remove any padding */
+    font-weight: bold;   /* Make the text bold */
+    white-space: nowrap; /* Prevent text from wrapping */
+  }
+  

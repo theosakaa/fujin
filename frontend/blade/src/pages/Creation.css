@@ -1,0 +1,68 @@
+#contentAuth {
+    position: absolute;  /* Use fixed if you want it to stay during scrolling */
+    left: 50%;
+    top: 100px;  /* Fixed vertical position */
+    transform: translateX(-50%);
+    width: auto !important;
+}
+
+/* #create {
+  visibility: hidden !important;
+  opacity: 0 !important;
+  -webkit-animation: fade-inn 1s ease-in-out forwards !important;
+  animation: fade-inn 1s ease-in-out forwards !important;
+  z-index: 2 !important;
+  will-change: opacity !important;
+} */
+
+
+/* Define the fade-in animation */
+@keyframes fade-inn {
+  0% {
+    opacity: 0 !important;
+    visibility: visible !important;  /* Ensure the element is visible during the animation */
+  }
+  100% {
+    opacity: 1 !important;
+  }
+}
+
+
+#contentSuck {
+    position: absolute;  /* Use fixed if you want it to stay during scrolling */
+    left: 50%;
+    top: 100px;  /* Fixed vertical position */
+    transform: translateX(-50%);
+    width: auto !important;
+    max-height: 715px !important;
+}
+
+#contChild{
+    top: 50px !important;
+    min-height: 420px!important; 
+    height: 17.5vh !important;
+
+}
+
+  #contentBig{
+    width: auto !important;
+  }
+
+  #bigPain{
+    width: auto !important;
+  }
+
+/* #redneck{
+    top: 450px !important;
+} */
+
+#specialText.sign-in-label{
+    font-size: 30 !important;
+}
+
+#contChild2{
+    top: 40px !important;
+    min-height: 420px!important; 
+    height: 17.5vh !important;
+
+}

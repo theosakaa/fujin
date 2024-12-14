@@ -1,0 +1,63 @@
+/* Ensure a centered pop-container with correct stacking */
+.pop-container {
+    width: 250px;
+    height: 80px;
+    background-color: #f8d7da;   /* Light red for error */
+    border: 2px solid #f5c6cb;
+    color: #721c24;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border-radius: 8px;  /* Optional: rounded corners */
+    position: absolute;  /* Changed from absolute to fixed */
+    top: 520px;
+    padding: 0px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    left: 50%;
+    transform: translateX(-50%);
+    
+    /* Fix Overlap */
+    z-index: 1000;   /* Ensure it's on top */
+  }
+  
+  /* Create the upward-pointing triangle spike effect */
+  .pop-container::after {
+    content: "";
+    position: absolute;
+    top: -10px; /* Position the triangle just above the container */
+    left: 50%;
+    transform: translateX(-50%); /* Center the triangle horizontally */
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 10px solid #f8d7da; /* Match the background color */
+  }
+  
+  /* Inner Error Text */
+  .error {
+    font-size: 13px;
+    font-weight: bold;
+  }
+  
+  #errMsg {
+    margin: 0 0 10px 0;
+    font-size: 14px;
+  }
+  
+  .si-link {
+    color: #721c24;
+    text-decoration: none;
+    font-size: 14px;
+  }
+  
+  .si-link:hover {
+    text-decoration: underline;
+  }
+
+  #saddick{
+    font-size: 300px;
+
+  }
+  

@@ -1,0 +1,40 @@
+/* Basic styling for the checkbox indicator */
+  .form-checkbox-input:checked ~ .form-checkbox-indicator {
+    background-color: #0071e3 !important; /* Blue background when checked */
+    border-color: #0071e3 !important; /* Blue border when checked */
+    color: white; /* Ensure checkmark is visible */
+  }
+  
+  /* Add checkmark when the checkbox is checked */
+  .form-checkbox-input:checked ~ .form-checkbox-indicator::after {
+    content: "✓"; /* Unicode check mark */
+    color: white;
+    font-size: 14px; /* Adjust the size of the check mark */
+    font-family: Arial, Helvetica, sans-serif !important;
+    position: absolute;
+    top: -1px; /* Adjust vertical position */
+    left: 2px; /* Adjust horizontal position */
+  }
+  
+  /* Hover state for checkbox indicator */
+  .form-checkbox:hover .form-checkbox-indicator {
+    border-color: #8f8f94; /* Change border color on hover */
+  }
+  
+  /* Styling for disabled state */
+  .form-checkbox .disabled~.form-label,
+  .form-checkbox :disabled~.form-label {
+    color: #6e6e73;
+  }
+  
+  .form-checkbox .disabled~.form-label .form-checkbox-indicator,
+  .form-checkbox :disabled~.form-label .form-checkbox-indicator {
+    color: #86868b;
+  }
+  
+  .form-checkbox .disabled~.form-label .form-checkbox-indicator,
+  .form-checkbox :disabled~.form-label .form-checkbox-indicator {
+    background: rgba(0,0,0,.01);
+    border-color: hsla(240,2%,54%,.42);
+  }
+  
