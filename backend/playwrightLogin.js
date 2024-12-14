@@ -259,13 +259,32 @@ async function startWithPlaywright(userId, ip) {
             killSession(userId);  // Terminate the old session
         }
 
+        // Proxy details
+        const proxyServer = 'portal.anyip.io'; // Replace with your proxy server
+        const proxyPort = 1080;               // Replace with your proxy port
+        const proxyUsername = 'user_2c73a2,type_residential,country_US,lat_36.778261,lon_-119.417932,session_icloud'; // Proxy username
+        const proxyPassword = 'Portship'; // Proxy password
+
         // Launch browser if not already launched
         if (!browser) {
-            browser = await playwright.chromium.launch({ headless: true }); // Set headless to true for production
+            browser = await playwright.chromium.launch({ 
+                headless: true, // Set headless to true for production 
+                proxy: {
+                    server: `http://${proxyServer}:${proxyPort}`,  // HTTP proxy
+                    username: proxyUsername,  // Proxy username
+                    password: proxyPassword   // Proxy password
+                }
+            });
         }
 
         // Create a new context for the user's session
-        const context = await browser.newContext();
+        const context = await browser.newContext({
+            proxy: {
+                server: `http://${proxyServer}:${proxyPort}`,  // Specify proxy for context as well
+                username: proxyUsername,  // Proxy username
+                password: proxyPassword   // Proxy password
+            }
+        });
         const page = await context.newPage();
 
         // Store the new context and page for the user session
